@@ -19,6 +19,7 @@ class mytank:
         self.tank_two = tank_two    #坦克二号玩家标志位
         self.life = quan_var.mytank_life       #初始化塔坦克生命值
         self.lock = threading.Lock()           #初始化线程锁
+        self.bullet_type = 1         #子弹类型
     def tank_qiehuan(self, fangxiang = None):
         if fangxiang == None:
             #坦克玩家一
@@ -143,20 +144,28 @@ class mytank:
     def move(self, fangxiang):#移动  根据方向键定移动方向  frame为坦克所处界面对象
         #设置运动方向
         self.fangxiang = fangxiang
+        qian_flag = self.is_qian()
         #如果可向前运动
-        if max(self.is_qian())<= 1 :
-            self.flag = 0
-            self.gengxin_map_dict(self.x//24, self.y//24) #清除之前map_dict上mytank的位置
-            #运动之后的坐标（单位像素）
-            self.x=self.x+self.fangxiang[0]*quan_var.mytank_speed
-            self.y+=self.fangxiang[1]*quan_var.mytank_speed
-            #改变其对应位置
-            self.tank_player.setGeometry(self.x, self.y, 48,48)
-            # self.changSudu()
-            self.flag = 5
-            self.gengxin_map_dict(self.x//24,self.y//24) #更新map_dict   玩家一位置
-            #更新quan_var.mytank_dict列表
-            self.flag_mytank()
+        if max(qian_flag)<= 1 :
+            if qian_flag[0] == 0.1:
+                print(0.1)
+            elif qian_flag[0] == 0.2:
+                print(0.2)
+            elif qian_flag[0] == 0.3:
+                print(0.3)
+            else:
+                self.flag = 0
+                self.gengxin_map_dict(self.x//24, self.y//24) #清除之前map_dict上mytank的位置
+                #运动之后的坐标（单位像素）
+                self.x=self.x+self.fangxiang[0]*quan_var.mytank_speed
+                self.y+=self.fangxiang[1]*quan_var.mytank_speed
+                #改变其对应位置
+                self.tank_player.setGeometry(self.x, self.y, 48,48)
+                # self.changSudu()
+                self.flag = 5
+                self.gengxin_map_dict(self.x//24,self.y//24) #更新map_dict   玩家一位置
+                #更新quan_var.mytank_dict列表
+                self.flag_mytank()
     # 判断坦克能否往前  返回类型（标志数，标志数） 告诉move方法 坦克前面是什么
     def is_qian(self):
         x,y = self.x, self.y

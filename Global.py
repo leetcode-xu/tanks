@@ -51,6 +51,7 @@ class quan_var:# 全局变量类
     mytank_speed = 24 #我方坦克速度
     laoying = None  #老鹰对象
     main_obj = None #主界面对象
+    food_obj = None #食物对象
     thread_life = False  # 我方坦克子弹线程标志位，False表示为线程不在运行
     frame_one = None   #主界面上的第一层框架
     life_list = {}  #存放地方坦克   对象：生命值
@@ -58,15 +59,16 @@ class quan_var:# 全局变量类
     # 加载音效
     pygame.init()
     pygame.mixer.init()
+    volume = 0
     #子弹爆炸音效
     bang_sound = pygame.mixer.Sound("./audios/bang.wav")
-    bang_sound.set_volume(1)
+    bang_sound.set_volume(volume)
     #游戏开始等声音
     start_sound = pygame.mixer.Sound("./audios/start.wav")
-    start_sound.set_volume(1)
+    start_sound.set_volume(volume)
     #游戏胜利的声音
     win_music = pygame.mixer.Sound("./audios/victory.wav")
-    win_music.set_volume(1)
+    win_music.set_volume(volume)
     #游戏失败的声音
     defeat = pygame.mixer.Sound("./audios/sb2.wav")
-    defeat.set_volume(1)
+    defeat.set_volume(volume)

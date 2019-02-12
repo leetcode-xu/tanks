@@ -114,7 +114,7 @@ if __name__ == "__main__":
     Form = QWidget()
     Form_help = QWidget()
     ui = Ui_Form()
-    ui.setupUi(Form, Form_help )
+    ui.setupUi(Form, Form_help)
     #初始化帮助界面
     help = Ui_Help()
     help.setupUi(Form_help)

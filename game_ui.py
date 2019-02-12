@@ -8,6 +8,7 @@ from Enytank import enytank
 from Global import quan_var
 from Mytank import mytank
 from Worker import worker, worker2, worker3
+from Food import food
 #游戏主界面，分为左右两部分，左边进行游戏操作，右边显示得分，生命值，剩余坦克数量等显示
 class main_ui(QWidget):
     def __init__(self, two = None):
@@ -276,6 +277,10 @@ class main_ui(QWidget):
         self.begin_enytank()
         #设置frame画板的透明度为百分之50
         # self.frame_one.setWindowOpacity(0.5)
+        #初始化一个food
+        self.food_obj = food(self.frame_two)
+        quan_var.food_obj = self.food_obj
+        self.food_obj.chusheng_food()
     #覆写点击关闭事件
     def closeEvent(self, QCloseEvent):
         # 未做出对正在运行线程的处理
