@@ -252,22 +252,22 @@ class main_ui(QWidget):
         for y in range(1, 27):
             for x in range(1, 27):
                 pixel = quan_var.map_dict.get((x-1,y-1),0)
-                if pixel==0:
+                if pixel == 0:
                     pass
-                elif pixel==quan_var.brick: #土砖
+                elif pixel == quan_var.brick:  # 土砖
                     # print(pixel)
                     pushbutton_brick = QPushButton(self.frame_two)
                     pushbutton_brick.setGeometry(x*24, y*24, 24, 24)
                     pushbutton_brick.setText('')
                     pushbutton_brick.setStyleSheet('QPushButton{border-image:url(./image/scene/brick.png)}')
                     quan_var.static_obj[(x*24, y*24)] = pushbutton_brick
-                elif pixel==quan_var.tree: #树木
+                elif pixel == quan_var.tree:  # 树木
                     pushbutton_brick = QPushButton(self.frame_one)
                     pushbutton_brick.setGeometry(x * 24, y * 24, 24, 24)
                     pushbutton_brick.setText('')
                     pushbutton_brick.setStyleSheet('QPushButton{border-image:url(./image/scene/tree.png)}')
                     quan_var.static_obj[(x * 24, y * 24)] = pushbutton_brick
-                elif pixel==quan_var.iron: #钢墙
+                elif pixel == quan_var.iron: #钢墙
                     pushbutton_brick = QPushButton(self.frame_two)
                     pushbutton_brick.setGeometry(x * 24, y * 24, 24, 24)
                     pushbutton_brick.setText('')
@@ -300,7 +300,8 @@ class main_ui(QWidget):
         elif e.key()==Qt.Key_Left:
             #玩家往左移动
             self.tank_per1.move((-1, 0))
-        elif e.key()==Qt.Key_0:
+        # elif e.key()==Qt.Key_0:
+        elif e.key()==Qt.Key_Space:
             #我方坦克一发射子弹
             self.tank_per1.fashe()
         elif self.two and e.key()==Qt.Key_D:

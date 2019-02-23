@@ -7,13 +7,13 @@ from Global import quan_var
 #子弹模块
 class bullet:
     def __init__(self, frame, obj_tan, tank_player):
-        self.obj_tan = obj_tan               #发送子弹的坦克对象
-        self.fangxiang = obj_tan.fangxiang   #坦克方向
-        self.obj_tan_button = tank_player    #坦克中的图标对象
+        self.obj_tan = obj_tan               # 发送子弹的坦克对象
+        self.fangxiang = obj_tan.fangxiang   # 坦克方向
+        self.obj_tan_button = tank_player    # 坦克中的图标对象
         self.frame = frame                   # 画板对象  第二级画板 frame_two
-        self.life = True                     #子弹生命值
-        self.speed = 12                      #子弹速度  单位像素
-        self.xy_()                           #  初始化子弹的初始位置
+        self.life = True                     # 子弹生命值
+        self.speed = 12                      # 子弹速度  单位像素
+        self.xy_()                           # 初始化子弹的初始位置
 
 #根据坦克坐标初始化子弹坐标
     def xy_(self):
@@ -42,14 +42,32 @@ class bullet:
     def move(self):
         #得到子弹前方的物体类型
         is_tuple = self.is_qian()
-        #如果前方有钢墙或边框的存在，处理如下
-        if 3 in is_tuple[0] or 10 in is_tuple[0]:
+        print('is_tuple:',is_tuple)
+        # 如果前方有钢墙或边框的存在，处理如下
+        if 1==self.obj_tan.bullet_type and (3 in is_tuple[0]) or 10 in is_tuple[0]:
             try:
                 # pygame.mixer.music.stop()
                 quan_var.bang_sound.play()
                 self.siwang()
             except Exception as e:
                 pass
+        # 捡到五角星后的子弹
+        elif self.obj_tan.bullet_type >= 2 and 3 in is_tuple[0]:
+            try:
+                is_tuple_one = (is_tuple[1][0] - 24) // 24, (is_tuple[1][1] - 24) // 24
+                is_tuple_two = (is_tuple[2][0] - 24) // 24, (is_tuple[2][1] - 24) // 24
+                quan_var.map_dict[is_tuple_one] = 0
+                quan_var.map_dict[is_tuple_two] = 0
+                # quan_var.static_obj[(is_tuple_one[0] * 24 + 24, is_tuple_one[1] * 24 + 24)].setVisible(False)
+                # quan_var.static_obj[(is_tuple_two[0] * 24 + 24, is_tuple_two[1] * 24 + 24)].setVisible(False)
+                if quan_var.static_obj.get(((is_tuple_one[0] * 24 + 24, is_tuple_one[1] * 24 + 24)), 0):
+                    quan_var.static_obj[(is_tuple_one[0] * 24 + 24, is_tuple_one[1] * 24 + 24)].setVisible(False)
+                if quan_var.static_obj.get(((is_tuple_two[0] * 24 + 24, is_tuple_two[1] * 24 + 24)), 0):
+                    quan_var.static_obj[(is_tuple_two[0] * 24 + 24, is_tuple_two[1] * 24 + 24)].setVisible(False)
+                quan_var.bang_sound.play()
+                self.siwang()
+            except Exception as e:
+                print('击中钢墙错误, 子弹类型二', e)
         # 如果老鹰被击中，游戏结束，为输
         elif is_tuple[0] == (4, 4):
             quan_var.bang_sound.play()
@@ -87,6 +105,8 @@ class bullet:
                     print("self.is_qian()",self.is_qian())
                     #根据坐标取出敌方坦克对象，并调用他自身的死亡函数
                     quan_var.enytank_dict[is_tuple_one].siwang()
+                    if quan_var.enytank_dict.get(is_tuple_one, 0):
+                        quan_var.enytank_dict[is_tuple_one].siwang()
                     quan_var.bang_sound.play()
                 except Exception as e:
                     print('敌方坦克被击中出错',e)
@@ -185,7 +205,7 @@ class bullet:
                 self.siwang()
             except Exception as e:
                 print('击中土砖错误',e)
-        #除以上可能之外
+        # 除以上可能之外
         else:
             self.x = self.x + self.speed*self.fangxiang[0]
             self.y = self.y + self.speed*self.fangxiang[1]
