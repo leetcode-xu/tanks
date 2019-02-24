@@ -294,7 +294,7 @@ class main_ui(QWidget):
                     pushbutton_brick.setStyleSheet('QPushButton{border-image:url(./image/scene/iron.png)}')
                     quan_var.static_obj[(x * 24, y * 24)] = pushbutton_brick
         # 生成敌方坦克
-        # self.begin_enytank()
+        self.begin_enytank()
         #设置frame画板的透明度为百分之50
         # self.frame_one.setWindowOpacity(0.5)
         #初始化一个food线程

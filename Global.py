@@ -61,7 +61,7 @@ class quan_var:# 全局变量类
     # 加载音效
     pygame.init()
     pygame.mixer.init()
-    volume = 0
+    volume = 1
     #子弹爆炸音效
     bang_sound = pygame.mixer.Sound("./audios/bang.wav")
     bang_sound.set_volume(volume)
@@ -74,3 +74,6 @@ class quan_var:# 全局变量类
     #游戏失败的声音
     defeat = pygame.mixer.Sound("./audios/sb2.wav")
     defeat.set_volume(volume)
+    # 玩家获得事物的声音
+    add_food = pygame.mixer.Sound("./audios/add.wav")
+    add_food.set_volume(volume)

@@ -99,7 +99,7 @@ class mytank:
     def get_life(self):
         if quan_var.life_list.get(self, 0):
             #在辅界面中显示坦克的生命值
-            quan_var.life_list.get(self, 0).setText('%s'%self.life)
+            quan_var.life_list[self].setText('%s'%self.life)
     #预留‘接口’函数，子弹判断击中我方坦克，即调用它
     def siwang(self):# 死亡
         #把标志位设为零
@@ -151,7 +151,7 @@ class mytank:
         # 如果可向前运动
         if max(qian_flag) <= 1:
             if max(qian_flag) == 0.1:  # 手雷
-                print("遇见手雷")
+                quan_var.add_food.play()
                 quan_var.food_obj.siwang()
                 mytank_obj_list = list(quan_var.mytank_dict.values())
                 for enytank in quan_var.life_list:
@@ -160,12 +160,14 @@ class mytank:
                         enytank.siwang()
             elif max(qian_flag) == 0.2:  # 五角星
                 quan_var.food_obj.siwang()
+                quan_var.add_food.play()
                 self.bullet_type += 1
                 quan_var.bullet_type_dict[self] = self.bullet_type
             elif max(qian_flag) == 0.3:  # 生命值
+                quan_var.add_food.play()
                 quan_var.food_obj.siwang()
                 self.life += 1
-                quan_var.life_list[self] = self.life
+                quan_var.mytank_life = self.life
                 self.get_life()
             else:
                 pass

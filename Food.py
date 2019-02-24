@@ -23,12 +23,10 @@ class food:
 
     def get_food(self):
         #        手雷     五角星    生命值
-        # foods = ['boom', 'star', 'tank']
-        foods = ['star']
+        foods = ['boom', 'star', 'tank']
         food = random.choice(foods)
-        # self.food_type = (foods.index(food) + 1)/10
-        self.food_type = 0.2
-        print(self.food_type)
+        self.food_type = (foods.index(food) + 1)/10
+        # print(self.food_type)
         return food
 
     def update_flag(self):
