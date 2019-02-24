@@ -7,7 +7,7 @@ import sys
 from Enytank import enytank
 from Global import quan_var
 from Mytank import mytank
-from Worker import worker, worker2, worker3
+from Worker import worker, worker2, worker3, work_food
 from Food import food
 #游戏主界面，分为左右两部分，左边进行游戏操作，右边显示得分，生命值，剩余坦克数量等显示
 class main_ui(QWidget):
@@ -61,8 +61,8 @@ class main_ui(QWidget):
         self.work1.start_enytank1.connect(self.enytan_obj1.move)
         #初始化Qt线程
         self.thread1 = QThread()
-        #将线程结束信号绑定线程退出函数，避免残留线程
-        self.work1.jieshu.connect(lambda :self.thread1.quit())
+        #将线程结束信号绑定线程退出函数，避免残留线程，
+        self.work1.jieshu.connect(lambda: self.thread1.quit())
         #将工作类对象加入到线程对象中
         self.work1.moveToThread(self.thread1)
         #将线程被启动信号绑定work1类的start_enytank_thread1函数
@@ -93,6 +93,26 @@ class main_ui(QWidget):
         self.work3.jieshu.connect(lambda: self.thread3.quit())
         self.thread3.started.connect(self.work3.start_enytank_thread3)
         self.thread3.start()
+
+    # 生成food
+    def begin_food(self):
+        # 初始化一个food
+        self.food_obj = food(self.frame_two)
+        # 将food对象存入global中
+        quan_var.food_obj = self.food_obj
+        # self.food_obj.chusheng_food()
+        # 实例化food工作类
+        self.wf = work_food()
+        # 生成一个线程对象
+        self.thread_food = QThread()
+        # 绑定food生成
+        self.wf.start_food.connect(self.food_obj.chusheng_food)
+        # 绑定food消失
+        self.wf.stop_food.connect(self.food_obj.siwang)
+        self.wf.moveToThread(self.thread_food)
+        self.thread_food.started.connect(self.wf.work)
+        self.thread_food.start()
+
 
     #初始化右边辅界面，长宽比近似黄金比例
     def show_fuui(self, Form):
@@ -274,13 +294,14 @@ class main_ui(QWidget):
                     pushbutton_brick.setStyleSheet('QPushButton{border-image:url(./image/scene/iron.png)}')
                     quan_var.static_obj[(x * 24, y * 24)] = pushbutton_brick
         # 生成敌方坦克
-        self.begin_enytank()
+        # self.begin_enytank()
         #设置frame画板的透明度为百分之50
         # self.frame_one.setWindowOpacity(0.5)
-        #初始化一个food
-        self.food_obj = food(self.frame_two)
-        quan_var.food_obj = self.food_obj
-        self.food_obj.chusheng_food()
+        #初始化一个food线程
+        self.begin_food()
+        # self.food_obj = food(self.frame_two)
+        # quan_var.food_obj = self.food_obj
+        # self.food_obj.chusheng_food()
     #覆写点击关闭事件
     def closeEvent(self, QCloseEvent):
         # 未做出对正在运行线程的处理

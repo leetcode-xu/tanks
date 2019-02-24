@@ -1,5 +1,5 @@
 import time
-
+import random
 from PyQt5.QtCore import QObject, pyqtSignal
 
 from Global import quan_var
@@ -78,3 +78,14 @@ class work_bullet(QObject):
         #用于表示线程子弹线程已经结束，不设置标志位，高并发的时候容易出错
         quan_var.thread_life = False
         # print('发射jieshu1信号')
+# 食物工作类
+class work_food(QObject):
+    start_food = pyqtSignal()
+    stop_food = pyqtSignal()
+
+    def work(self):
+        while True:
+            self.start_food.emit()
+            time.sleep(15)
+            self.stop_food.emit()
+            time.sleep(random.randint(3, 10))
