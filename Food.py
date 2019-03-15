@@ -22,7 +22,7 @@ class food:
         return self.y * 24 + 24
 
     def get_food(self):
-        #        手雷     五角星    生命值
+        # 手雷     五角星    生命值
         foods = ['boom', 'star', 'tank']
         food = random.choice(foods)
         self.food_type = (foods.index(food) + 1)/10

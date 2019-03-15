@@ -1,7 +1,7 @@
 import pygame
 
 
-class quan_var:# 全局变量类
+class quan_var:#  全局变量类
     map_dict={(0, 4): 2, (0, 5): 2, (1, 4): 2, (1, 5): 2, (2, 2): 2, (2, 3): 2, (3, 2): 2, (3, 3): 2, (2, 6): 2,
               (2, 7): 2, (3, 6): 2, (3, 7): 2, (8, 18): 2, (8, 19): 2, (9, 18): 2, (14, 4): 2, (14, 5): 2, (15, 4): 2,
               (15, 5): 2, (9, 19): 2, (20, 20): 2, (20, 21): 2, (20, 22): 2, (20, 23): 2, (21, 20): 2, (21, 21): 2,
@@ -35,45 +35,45 @@ class quan_var:# 全局变量类
               (22, 1): 1, (23, 0): 1, (23, 1): 1, (8, 8): 1, (8, 9): 1, (8, 14): 1, (8, 15): 1, (9, 8): 1, (9, 9): 1, (9, 14): 1,
               (9, 15): 1, (14, 8): 1, (14, 9): 1, (14, 14): 1, (14, 15): 1, (15, 8): 1, (15, 9): 1, (15, 14): 1, (15, 15): 1,
               (11, 23): 2, (12, 23): 2, (13, 23): 2, (14, 23): 2, (11, 24): 2, (14, 24): 2, (11, 25): 2, (14, 25): 2, (12, 24): 4,
-              (13, 24): 4, (12, 25): 4, (13, 25): 4}  #地图初始坐标 生成 1 2 3 4
-    tree = 1     # 表示为树木
-    brick = 2    # 表示为土砖
-    iron = 3     # 表示为刚墙
-    home = 4     # 表示为老鹰
-    mytank = 5   # 标记我方坦克
-    enytank = 6  # 敌方坦克
-    enytank_num = 10  # 敌方坦克总数
-    now_enytank_num = 0  # 此时地图上存在的地方坦克数
-    mytank_life = 3  # 我方坦克初始生命值
-    static_obj = {}  # 存放不动控件的位置与对象
-    mytank_dict = {}  # 存放我方坦克对象
-    food_dict = {}  # 存放食物位置：对象
-    enytank_dict = {}  # 存放敌方坦克   存放形式为 {（此时坦克像素坐标）：敌方坦克对象}
+              (13, 24): 4, (12, 25): 4, (13, 25): 4}  # 地图初始坐标 生成 1 2 3 4
+    tree = 1     #  表示为树木
+    brick = 2    #  表示为土砖
+    iron = 3     #  表示为刚墙
+    home = 4     #  表示为老鹰
+    mytank = 5   #  标记我方坦克
+    enytank = 6  #  敌方坦克
+    enytank_num = 10  #  敌方坦克总数
+    now_enytank_num = 0  #  此时地图上存在的地方坦克数
+    mytank_life = 3  #  我方坦克初始生命值
+    static_obj = {}  #  存放不动控件的位置与对象
+    mytank_dict = {}  #  存放我方坦克对象
+    food_dict = {}  #  存放食物位置：对象
+    enytank_dict = {}  #  存放敌方坦克   存放形式为 {（此时坦克像素坐标）：敌方坦克对象}
     bullet_type_dict = {}
-    mytank_speed = 24  # 我方坦克速度
-    laoying = None   # 老鹰对象
-    main_obj = None  # 主界面对象
-    food_obj = None  # 食物对象
-    thread_life = False  # 我方坦克子弹线程标志位，False表示为线程不在运行
-    frame_one = None   # 主界面上的第一层框架
-    life_list = {}  # 存放坦克   坦克对象：显示生命值的控件对象
-    fenshu = 0   # 游戏总分数
-    # 加载音效
+    mytank_speed = 24  #  我方坦克速度
+    laoying = None   #  老鹰对象
+    main_obj = None  #  主界面对象
+    food_obj = None  #  食物对象
+    thread_life = False  #  我方坦克子弹线程标志位，False表示为线程不在运行
+    frame_one = None   #  主界面上的第一层框架
+    life_list = {}  #  存放坦克   坦克对象：显示生命值的控件对象
+    fenshu = 0   #  游戏总分数
+    #  加载音效
     pygame.init()
     pygame.mixer.init()
     volume = 1
-    #子弹爆炸音效
+    # 子弹爆炸音效
     bang_sound = pygame.mixer.Sound("./audios/bang.wav")
     bang_sound.set_volume(volume)
-    #游戏开始等声音
+    # 游戏开始等声音
     start_sound = pygame.mixer.Sound("./audios/start.wav")
     start_sound.set_volume(volume)
-    #游戏胜利的声音
+    # 游戏胜利的声音
     win_music = pygame.mixer.Sound("./audios/victory.wav")
     win_music.set_volume(volume)
-    #游戏失败的声音
+    # 游戏失败的声音
     defeat = pygame.mixer.Sound("./audios/sb2.wav")
     defeat.set_volume(volume)
-    # 玩家获得事物的声音
+    #  玩家获得事物的声音
     add_food = pygame.mixer.Sound("./audios/add.wav")
     add_food.set_volume(volume)

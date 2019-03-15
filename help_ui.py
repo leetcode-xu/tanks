@@ -1,14 +1,14 @@
-# -*- coding: utf-8 -*-
+#  -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Tanksym1.ui'
-#
-# Created by: PyQt5 UI code generator 5.11.2
-#
-# WARNING! All changes made in this file will be lost!
+#  Form implementation generated from reading ui file 'Tanksym1.ui'
+# 
+#  Created by: PyQt5 UI code generator 5.11.2
+# 
+#  WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-#游戏帮助界面，使用desiger生成的
+# 游戏帮助界面，使用desiger生成的
 class Ui_Help(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")

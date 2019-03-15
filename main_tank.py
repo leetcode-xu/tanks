@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
+#  -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Tanksym.ui'
-#
-# Created by: PyQt5 UI code generator 5.11.2
-#
-# WARNING! All changes made in this file will be lost!
+#  Form implementation generated from reading ui file 'Tanksym.ui'
+# 
+#  Created by: PyQt5 UI code generator 5.11.2
+# 
+#  WARNING! All changes made in this file will be lost!
 import pygame
 from PyQt5.QtWidgets import QWidget, QApplication, QPushButton, QLabel, QProgressBar, QRadioButton
 from PyQt5.QtCore import QRect, QSize, QMetaObject, QCoreApplication
@@ -14,17 +14,17 @@ import sys
 from game_ui import main_ui
 from help_ui import Ui_Help
 
-#游戏一级界面，也是由designer生成的，
-#主要功能：选择单人双人模式，显示帮助，点击开始游戏，进度条没有具体实现
+# 游戏一级界面，也是由designer生成的，
+# 主要功能：选择单人双人模式，显示帮助，点击开始游戏，进度条没有具体实现
 class Ui_Form(object):
     pygame.init()
     pygame.mixer.init()
-    # 加载音效
+    #  加载音效
     add_sound = pygame.mixer.Sound("./audios/startui.wav")
     add_sound.set_volume(1)
     add_sound.play()
     def setupUi(self, Form,Form1):
-        # self.help = help
+        #  self.help = help
         self.Form1 = Form1
         Form.setObjectName("Form")
         Form.setEnabled(True)
@@ -83,7 +83,7 @@ class Ui_Form(object):
         self.begin.setObjectName("begin")
 
         self.retranslateUi(Form)
-        # self.progressBar.valueChanged['int'].connect(Form.jindu)
+        #  self.progressBar.valueChanged['int'].connect(Form.jindu)
         self.help.clicked.connect(self.bangzhu)
         QMetaObject.connectSlotsByName(Form)
     def begin_game(self):
@@ -99,14 +99,14 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "坦克大战"))
-        self.label.setText(_translate("Form", "<html><head/><body><p align=\"center\"><span style=\" font-size:48pt; color:#fefefe;\">坦克大战</span></p></body></html>"))
+        self.label.setText(_translate("Form", "<html><head/><body><p align=\"center\"><span style=\" font-size:48pt; color:# fefefe;\">坦克大战</span></p></body></html>"))
         self.help.setText(_translate("Form", "游戏帮助"))
         self.radio_one.setText(_translate("Form", "单人模式"))
         self.radio_two.setText(_translate("Form", "双人模式"))
         self.begin.setText(_translate("Form", "开始游戏"))
 
     def bangzhu(self):
-        # self.help.setupUi(self.Form1)
+        #  self.help.setupUi(self.Form1)
         self.Form1.show()
 
 if __name__ == "__main__":
@@ -115,7 +115,7 @@ if __name__ == "__main__":
     Form_help = QWidget()
     ui = Ui_Form()
     ui.setupUi(Form, Form_help)
-    #初始化帮助界面
+    # 初始化帮助界面
     help = Ui_Help()
     help.setupUi(Form_help)
 

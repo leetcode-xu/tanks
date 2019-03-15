@@ -135,19 +135,19 @@ class enytank:
         # 随机生成一个方向，其中向下概率37.5%   向左向右 25%    向上12.5%
         self.fangxiang = random.choice(((0, -1),(0, 1),(0, 1),(0, 1),(-1, 0),(1, 0),(-1, 0),(1, 0)))
         if self.fangxiang==(1, 0):  # 方向为右
-                   # 右上                                                    右下
+            # 右上                                                    右下
             self.enytank_button.setStyleSheet('QPushButton{border-image:url(./image/enemyTank/enemy_%s_right.png);}'% str(self.life))
             return quan_var.map_dict.get((self.x // 24 + 1 , self.y // 24 - 1), 0), quan_var.map_dict.get((self.x // 24 + 1  , self.y // 24 ), 0)
         elif self.fangxiang==(-1, 0): # 方向为左
-            # 左上                                                                                左下
+            # 左上                                                     左下
             self.enytank_button.setStyleSheet('QPushButton{border-image:url(./image/enemyTank/enemy_%s_left.png);}'% str(self.life))
             return quan_var.map_dict.get(((self.x-24) // 24 - 1, self.y // 24 - 1), 0), quan_var.map_dict.get(((self.x-24) // 24 - 1, self.y // 24), 0)
         elif self.fangxiang==(0, 1): #方向为下
-            # 左下                                                          右下
+            # 左下                                                     右下
             self.enytank_button.setStyleSheet('QPushButton{border-image:url(./image/enemyTank/enemy_%s_down.png);}'% str(self.life))
             return quan_var.map_dict.get((self.x // 24 - 1, self.y // 24 + 1), 0), quan_var.map_dict.get((self.x // 24, self.y // 24 + 1), 0)
         else:  # 方向为上
-            # 左上                                                                               右上
+            # 左上                                                     右上
             self.enytank_button.setStyleSheet('QPushButton{border-image:url(./image/enemyTank/enemy_%s_up.png);}'% str(self.life))
             return quan_var.map_dict.get((self.x // 24 - 1, (self.y - 24) // 24 - 1), 0), quan_var.map_dict.get((self.x // 24, (self.y - 24) // 24 - 1), 0)
     def get_life(self):
