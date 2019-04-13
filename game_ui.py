@@ -93,7 +93,6 @@ class main_ui(QWidget):
         self.work3.jieshu.connect(lambda: self.thread3.quit())
         self.thread3.started.connect(self.work3.start_enytank_thread3)
         self.thread3.start()
-
     # 生成food
     def begin_food(self):
         # 初始化一个food
@@ -112,8 +111,6 @@ class main_ui(QWidget):
         self.wf.moveToThread(self.thread_food)
         self.thread_food.started.connect(self.wf.work)
         self.thread_food.start()
-
-
     # 初始化右边辅界面，长宽比近似黄金比例
     def show_fuui(self, Form):
         quan_var.main_obj = self

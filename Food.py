@@ -3,7 +3,6 @@ import random
 
 from Global import quan_var
 
-
 class food:
     def __init__(self, frame=0):
         self.frame = frame
@@ -62,7 +61,6 @@ class food:
         quan_var.food_dict[(self.x * 24 + 48, self.y * 24 + 24)] = self
         quan_var.food_dict[(self.x * 24 + 24, self.y * 24 + 48)] = self
         quan_var.food_dict[(self.x * 24 + 48, self.y * 24 + 48)] = self
-
 
     def siwang(self):
         self.life = False

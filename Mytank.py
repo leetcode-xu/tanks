@@ -71,8 +71,6 @@ class mytank:
                 del quan_var.mytank_dict[key]
         quan_var.mytank_dict[(self.x, self.y)] = self
         self.lock.release()
-
-
     def fashe(self): # 发射子弹
         #  一个子弹线程没有结束，不允许发射子弹
         if not quan_var.thread_life:

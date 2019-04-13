@@ -83,7 +83,7 @@ class enytank:
         self.enytank_button.setStyleSheet('QPushButton{border-image:url(%s)}'%image_url)
         self.enytank_button.setVisible(True)
 
-    # 在敌方坦克死亡一个的时候再出生一个，区别就是为了共用self.enytank_button对象，
+    # 在敌方坦克死亡一个的时候再出生一个，共用self.enytank_button对象，
     def again_chusheng(self):
         quan_var.now_enytank_num += 1
         quan_var.enytank_num -= 1
