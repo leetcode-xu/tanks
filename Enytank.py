@@ -10,8 +10,10 @@ from Bullet import bullet
 from Global import quan_var
 from Worker import work_bullet
 
-#敌方坦克类
+
+# 敌方坦克类
 class enytank:
+
     def __init__(self, frame):
         self.frame = frame               # 存在的画板
         self.eny_bullet_life = True      # 坦克生命标记位
@@ -22,7 +24,6 @@ class enytank:
         self.bullet_list = []            # 子弹列表，作用：不允许同一个坦克在一个子弹运动未结束之前发射子弹（性能的限制，欢迎各位改进）
         self.set_xy()                    # 根据四个可选位置随机生成一个坦克
 
-
     def set_xy(self):
         # 根据四个可选位置随机生成一个坦克
         while True:
@@ -31,6 +32,7 @@ class enytank:
             if self.tank_true():
                 break
     # 坦克出生之前，判断位置该位置是否被占用
+
     def tank_true(self):
         if quan_var.map_dict.get((self.x//24, self.y//24), 0)>1:
             return False
@@ -45,6 +47,7 @@ class enytank:
             self.genxin_enytank_dict()
             return True
     # 更新敌方坦克位置信息到quan_var.map_dict字典中
+
     def gengxin_map_dict(self, flag = 6):
         self.lock.acquire(timeout=0.02)
         quan_var.map_dict[self.x//24-1, self.y//24-1] = flag
@@ -52,6 +55,7 @@ class enytank:
         quan_var.map_dict[self.x//24-1, self.y//24] = flag
         quan_var.map_dict[self.x//24, self.y//24] = flag
         self.lock.release()
+
     # 更新gengxin_enytank_dict字典信息
     def genxin_enytank_dict(self):
         self.lock.acquire(timeout=0.02)
@@ -63,6 +67,7 @@ class enytank:
         quan_var.enytank_dict[(self.x, self.y + 24)] = self
         quan_var.enytank_dict[(self.x + 24, self.y + 24)] = self
         self.lock.release()
+
     # 生成敌方坦克
     def chusheng(self):
         # 界面敌方坦克数量加一
@@ -94,12 +99,13 @@ class enytank:
         self.enytank_button.setGeometry(self.x, self.y, 48, 48)
         self.enytank_button.setStyleSheet('QPushButton{border-image:url(%s)}' % image_url)
         self.enytank_button.setVisible(True)
+
     # 坦克移动
     def move(self):
         # 获取前方物品状态
         self.qianfang = self.is_qian()
         # 可往前运动，即做如下操作
-        if  max(self.qianfang)<2:
+        if max(self.qianfang)<2:
             self.enytank_button.setGeometry(self.x +self.fangxiang[0]*24, self.y + self.fangxiang[1]*24, 48, 48)
             self.gengxin_map_dict(0)
             self.x = self.x+self.fangxiang[0]*24
@@ -114,6 +120,7 @@ class enytank:
         self.thread.quit()
         # 上一个子弹线程退出，将eny_bullet_life标志位变为True
         self.eny_bullet_life = True
+
     # 发射子弹函数
     def fashe(self):
         # 只有上一个子弹线程完全退出了，才允许发射下一发子弹，（由于本人技术限制）
@@ -130,6 +137,7 @@ class enytank:
                 self.thread.start()
             except Exception as e:
                 pass
+
     # 返回前方物体类型  ，返回值类型：（标志数，标志数）
     def is_qian(self):
         # 随机生成一个方向，其中向下概率37.5%   向左向右 25%    向上12.5%
@@ -150,10 +158,12 @@ class enytank:
             # 左上                                                     右上
             self.enytank_button.setStyleSheet('QPushButton{border-image:url(./image/enemyTank/enemy_%s_up.png);}'% str(self.life))
             return quan_var.map_dict.get((self.x // 24 - 1, (self.y - 24) // 24 - 1), 0), quan_var.map_dict.get((self.x // 24, (self.y - 24) // 24 - 1), 0)
+
     def get_life(self):
         if quan_var.life_list.get(self, 0):
             # 在辅界面上显示其生命值
             quan_var.life_list.get(self, 0).setText('%s'%self.life)
+
     # 预留“接口”函数供子弹类调用，子弹判断击中，即调用
     def siwang(self):
         # 增加分数

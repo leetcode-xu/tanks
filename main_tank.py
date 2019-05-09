@@ -21,8 +21,9 @@ class Ui_Form(object):
     pygame.mixer.init()
     #  加载音效
     add_sound = pygame.mixer.Sound("./audios/startui.wav")
-    add_sound.set_volume(1)
+    add_sound.set_volume(0.5)
     add_sound.play()
+
     def setupUi(self, Form,Form1):
         #  self.help = help
         self.Form1 = Form1
@@ -86,6 +87,7 @@ class Ui_Form(object):
         #  self.progressBar.valueChanged['int'].connect(Form.jindu)
         self.help.clicked.connect(self.bangzhu)
         QMetaObject.connectSlotsByName(Form)
+
     def begin_game(self):
         if self.radio_one.isChecked():
             one = main_ui()

@@ -42,7 +42,7 @@ class quan_var:#  全局变量类
     home = 4     #  表示为老鹰
     mytank = 5   #  标记我方坦克
     enytank = 6  #  敌方坦克
-    enytank_num = 10  #  敌方坦克总数
+    enytank_num = 3  #  敌方坦克总数，最少设置为三
     now_enytank_num = 0  #  此时地图上存在的地方坦克数
     mytank_life = 3  #  我方坦克初始生命值
     static_obj = {}  #  存放不动控件的位置与对象
@@ -64,10 +64,10 @@ class quan_var:#  全局变量类
     volume = 1
     # 子弹爆炸音效
     bang_sound = pygame.mixer.Sound("./audios/bang.wav")
-    bang_sound.set_volume(volume)
+    bang_sound.set_volume(volume*0.2)
     # 游戏开始等声音
     start_sound = pygame.mixer.Sound("./audios/start.wav")
-    start_sound.set_volume(volume)
+    start_sound.set_volume(volume*0.6)
     # 游戏胜利的声音
     win_music = pygame.mixer.Sound("./audios/victory.wav")
     win_music.set_volume(volume)
