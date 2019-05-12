@@ -22,9 +22,11 @@ class food:
 
     def get_food(self):
         # 手雷     五角星    生命值
+        # foods = ['boom', 'boom', 'boom']
         foods = ['boom', 'star', 'tank']
         food = random.choice(foods)
         self.food_type = (foods.index(food) + 1)/10
+        # self.food_type = 0.1
         # print(self.food_type)
         return food
 

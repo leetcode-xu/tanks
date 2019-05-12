@@ -93,7 +93,7 @@ class Ui_Form(object):
             one = main_ui()
             print('启动单人模式')
             one.show()
-        elif self.radio_two.isCheckable():
+        elif self.radio_two.isChecked():
             two =main_ui('two')
             print('启动双人模式')
             two.show()
